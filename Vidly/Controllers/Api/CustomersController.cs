@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Vidly.Data;
 using Vidly.Models;
@@ -31,7 +28,7 @@ namespace Vidly.Controllers.Api
         }
 
         //GET: /api/customers/1
-        [HttpGet]
+        [HttpGet("{id}")]
         public Customer GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -58,7 +55,7 @@ namespace Vidly.Controllers.Api
         }
 
         //PUT /api/customers/1
-        [HttpPut]
+        [HttpPut("{id}")]
         public void UpdateCustomer(int id, Customer customer)
         {
             if (!ModelState.IsValid)
@@ -78,7 +75,7 @@ namespace Vidly.Controllers.Api
         }
 
         //DELETE /api/customers/id
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public void DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
