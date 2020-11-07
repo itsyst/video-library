@@ -35,11 +35,11 @@ namespace Vidly.Controllers
         public IActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
-            return View(viewModel);
+            return View("CustomerForm", viewModel);
         }
 
         [HttpPost]
@@ -48,6 +48,20 @@ namespace Vidly.Controllers
             await _context.Customers.AddAsync(customer).ConfigureAwait(true);
             await _context.SaveChangesAsync().ConfigureAwait(true);
             return RedirectToAction("Index","Customers");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+                return NotFound(404);
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", viewModel);
         }
     }
 }
