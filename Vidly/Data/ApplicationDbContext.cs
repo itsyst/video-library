@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Vidly.Models;
 
 
@@ -13,12 +15,16 @@ namespace Vidly.Data
         }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             SeedDatabase(modelBuilder);
 
-            ConfigureCustomer(modelBuilder);
+            ConfigurationCustomer(modelBuilder);
  
             base.OnModelCreating(modelBuilder);
         }
@@ -31,6 +37,7 @@ namespace Vidly.Data
                           new Customer { Id = 2, Name = "Mary William", IsSubscribedToNewsLetter = true, MembershipTypeId = 2 }
                 );
 
+
             modelBuilder.Entity<MembershipType>()
                 .HasData(
                     new MembershipType { Id = 1, SignUpFee = 0, DurationInMonths = 0, DiscountRate = 0 },
@@ -38,9 +45,10 @@ namespace Vidly.Data
                     new MembershipType { Id = 3, SignUpFee = 90, DurationInMonths = 3, DiscountRate = 15 },
                     new MembershipType { Id = 4, SignUpFee = 300, DurationInMonths = 12, DiscountRate = 20 }
                 );
+
         }
 
-        private static void ConfigureCustomer(ModelBuilder modelBuilder)
+        private static void ConfigurationCustomer(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Entity<Customer>()
@@ -48,6 +56,6 @@ namespace Vidly.Data
                 .IsRequired()
                 .HasMaxLength(255);
         }
-
+ 
     }
 }

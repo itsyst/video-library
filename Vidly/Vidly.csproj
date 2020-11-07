@@ -26,6 +26,24 @@
     <Compile Remove="Migrations\20200804210834_InitialModel.Designer.cs" />
     <Compile Remove="Migrations\20200804211827_ApplyAnnotationsToMembershipTypes.cs" />
     <Compile Remove="Migrations\20200804211827_ApplyAnnotationsToMembershipTypes.Designer.cs" />
+    <Compile Remove="Migrations\20200804214800_SetNameOfMembershipType.cs" />
+    <Compile Remove="Migrations\20200804214800_SetNameOfMembershipType.Designer.cs" />
+    <Compile Remove="Migrations\20200804230907_AddMoviesTable.cs" />
+    <Compile Remove="Migrations\20200804230907_AddMoviesTable.Designer.cs" />
+    <Compile Remove="Migrations\20200804231600_AddMoviesTableToDatabase.cs" />
+    <Compile Remove="Migrations\20200804231600_AddMoviesTableToDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200804231651_PolpulateGenreOfMoviesTable.cs" />
+    <Compile Remove="Migrations\20200804231651_PolpulateGenreOfMoviesTable.Designer.cs" />
+    <Compile Remove="Migrations\20200804233517_PolpulateRecordsToTableMovies.cs" />
+    <Compile Remove="Migrations\20200804233517_PolpulateRecordsToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200804235711_PluralizeTableNameToGenres.cs" />
+    <Compile Remove="Migrations\20200804235711_PluralizeTableNameToGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200805002838_AddPropertiesToTableMovies.cs" />
+    <Compile Remove="Migrations\20200805002838_AddPropertiesToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200805140319_PupulateRecordsToTableMovies.cs" />
+    <Compile Remove="Migrations\20200805140319_PupulateRecordsToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200805141010_PopulateRecordsToTableGenres.cs" />
+    <Compile Remove="Migrations\20200805141010_PopulateRecordsToTableGenres.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

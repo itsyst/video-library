@@ -24,9 +24,9 @@ namespace Vidly.Controllers
             return View(customers);
         }
 
-        public IActionResult Details(int Id)
+        public IActionResult Details(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == Id);
+            var customer = _context.Customers.Include(m =>m.MembershipType).SingleOrDefault(c => c.Id == id);
             return View(customer);
         }
     }

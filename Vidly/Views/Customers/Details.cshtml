@@ -1,4 +1,5 @@
-﻿@model Vidly.Models.Customer
+﻿@using Microsoft.EntityFrameworkCore
+@model Vidly.Models.Customer
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +8,17 @@
 
 
 <div>
-    <h1>@Html.DisplayFor(model => model.Name)</h1> 
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
     @*<h2>@Model.Name</h2>*@
+    <ul>
+        <li>@Html.DisplayName("Membership Type"): @Model.MembershipType.Name</li>
+
+        @if (Model.Birthdate.HasValue)
+        {
+
+            <li>@Html.DisplayName("Birthdate"): @Model.Birthdate.Value.ToShortDateString()</li>
+
+        }
+    </ul>
 </div>
 
