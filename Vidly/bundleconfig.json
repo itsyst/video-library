@@ -1,10 +1,10 @@
 [
-  {
-    "outputFileName": "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
-    "inputFiles": [
-      "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
-    ]
-  },
+  //{
+  //  "outputFileName": "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+  //  "inputFiles": [
+  //    "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
+  //  ]
+  //},
   {
     "outputFileName": "wwwroot/lib/datatables/js/dataTables.bootstrap.min.js",
     "inputFiles": [
@@ -21,6 +21,12 @@
     "outputFileName": "wwwroot/lib/datatables/js/jquery.dataTables.min.js",
     "inputFiles": [
       "wwwroot/lib/datatables/js/jquery.dataTables.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/bootstrap/dist/css/bootstrap-lumen.min.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/dist/css/bootstrap-lumen.css"
     ]
   }
 ]

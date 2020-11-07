@@ -19,8 +19,10 @@ namespace Vidly.Controllers
         }
         public IActionResult Index()
         {
-            var customers = _context.Customers.Include(m => m.MembershipType).ToList();
-            return View(customers);
+            //var customers = _context.Customers.Include(m => m.MembershipType).ToList();
+            //return View(customers);
+            // No need to render the customers in the server
+            return View();
         }
 
         public IActionResult Details(int id)
