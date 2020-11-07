@@ -8,6 +8,8 @@ namespace Vidly.Models
 {
     public class Min18YearsIfAMember : ValidationAttribute
     {
+        // Client side annotation does not work with customer annotation we have to add a jQuery code
+        // Better to keep the standard annotations for the client side and apply the customer ones to the server
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var customer = (Customer) validationContext.ObjectInstance;

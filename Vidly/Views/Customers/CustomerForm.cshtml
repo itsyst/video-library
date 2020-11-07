@@ -1,4 +1,6 @@
-﻿@model Vidly.ViewModel.CustomerFormViewModel
+﻿@using Microsoft.AspNetCore.Identity.UI.V3.Pages.Internal
+@using Vidly.ViewModel
+@model Vidly.ViewModel.CustomerFormViewModel
 
 @{
     ViewData["Title"] = "New";
@@ -24,7 +26,7 @@
     <div class="form-group w-25">
         @Html.LabelFor(m => m.Customer.Birthdate)
         @Html.TextBoxFor(model => model.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(c=>c.Customer.Birthdate)
+        @Html.ValidationMessageFor(c => c.Customer.Birthdate)
     </div>
     <div>
         <label class="custom-checkbox">
@@ -35,5 +37,11 @@
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
+@* This lines are for rendering the bundle validation, when applied in just this file not _Layout, will stop the network trip to the server
+    but can be applied to the _layout as well*@
 
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
 
