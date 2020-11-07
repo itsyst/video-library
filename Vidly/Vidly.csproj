@@ -44,6 +44,26 @@
     <Compile Remove="Migrations\20200805140319_PupulateRecordsToTableMovies.Designer.cs" />
     <Compile Remove="Migrations\20200805141010_PopulateRecordsToTableGenres.cs" />
     <Compile Remove="Migrations\20200805141010_PopulateRecordsToTableGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200805184022_PoupulaterecordsToTableMovies.cs" />
+    <Compile Remove="Migrations\20200805184022_PoupulaterecordsToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200806205013_UpdateForeignKeyToClassMovie.cs" />
+    <Compile Remove="Migrations\20200806205013_UpdateForeignKeyToClassMovie.Designer.cs" />
+    <Compile Remove="Migrations\20200806210814_HandleExceptionIdentityInsertSetToOnInGenres.cs" />
+    <Compile Remove="Migrations\20200806210814_HandleExceptionIdentityInsertSetToOnInGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200806225504_AddannotationsToTableGenres.cs" />
+    <Compile Remove="Migrations\20200806225504_AddannotationsToTableGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200806231427_SetIdentityInserToTableGenres.cs" />
+    <Compile Remove="Migrations\20200806231427_SetIdentityInserToTableGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200806233007_ChangePropertyIdInTabeleGenres.cs" />
+    <Compile Remove="Migrations\20200806233007_ChangePropertyIdInTabeleGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200806233145_ChangePropertyIdInTabeleGenres.cs" />
+    <Compile Remove="Migrations\20200806233145_ChangePropertyIdInTabeleGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200806233336_ChangePropertyIdInTabeleGenres.cs" />
+    <Compile Remove="Migrations\20200806233336_ChangePropertyIdInTabeleGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200806233653_ChangePropertyIdInTabeleGenres.cs" />
+    <Compile Remove="Migrations\20200806233653_ChangePropertyIdInTabeleGenres.Designer.cs" />
+    <Compile Remove="Migrations\20200806234442_AddRecordsToTableGenresAgain.cs" />
+    <Compile Remove="Migrations\20200806234442_AddRecordsToTableGenresAgain.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

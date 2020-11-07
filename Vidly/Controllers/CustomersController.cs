@@ -38,6 +38,21 @@ namespace Vidly.Controllers
             return View("CustomerForm", viewModel);
         }
 
+
+        public IActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+                return NotFound(404);
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", viewModel);
+        }
+
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
@@ -59,21 +74,7 @@ namespace Vidly.Controllers
 
             }
             _context.SaveChanges();
-            return RedirectToAction("Index","Customers");
-        }
-
-        public IActionResult Edit(int id)
-        {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            if (customer == null)
-                return NotFound(404);
-
-            var viewModel = new CustomerFormViewModel
-            {
-                Customer = customer,
-                MembershipTypes = _context.MembershipTypes.ToList()
-            };
-            return View("CustomerForm", viewModel);
+            return RedirectToAction("Index", "Customers");
         }
     }
 }

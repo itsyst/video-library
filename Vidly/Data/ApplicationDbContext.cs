@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -57,6 +58,6 @@ namespace Vidly.Data
                 .IsRequired()
                 .HasMaxLength(255);
         }
- 
+
     }
 }

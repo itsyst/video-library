@@ -13,6 +13,8 @@ namespace Vidly.Migrations
             migrationBuilder.Sql("INSERT INTO Genres (Id, Name) VALUES (3, 'Family')");
             migrationBuilder.Sql("INSERT INTO Genres (Id, Name) VALUES (4, 'Romance')");
             migrationBuilder.Sql("INSERT INTO Genres (Id, Name) VALUES (5, 'Comedy')");
+            migrationBuilder.Sql("SET IDENTITY_INSERT Genres OFF");
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
