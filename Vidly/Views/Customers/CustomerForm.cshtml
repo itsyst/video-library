@@ -22,6 +22,7 @@
     <div class="form-group w-25">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select membership type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.MembershipTypeId)
     </div>
     <div class="form-group w-25">
         @Html.LabelFor(m => m.Customer.Birthdate)
@@ -34,6 +35,7 @@
         </label>
     </div>
     @Html.HiddenFor(c => c.Customer.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
