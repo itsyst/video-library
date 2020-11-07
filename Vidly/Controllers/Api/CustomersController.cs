@@ -26,7 +26,7 @@ namespace Vidly.Controllers.Api
 
         // GET /api/customers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CustomerDto>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<CustomerDto>>> GetCustomers()
         {
             return await _context.Customers
                 .Select(customer => Mapper.Map<Customer, CustomerDto>(customer))
@@ -51,7 +51,7 @@ namespace Vidly.Controllers.Api
         public async Task<ActionResult<CustomerDto>> CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                throw new ArgumentException();
+                return NotFound();
 
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
            
@@ -85,7 +85,7 @@ namespace Vidly.Controllers.Api
 
         // PUT /api/customers/1
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTodoItem(int id, CustomerDto customerDto)
+        public async Task<IActionResult> UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (id != customerDto.Id)
             {
