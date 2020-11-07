@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Vidly.Data;
 using Vidly.DTOs;
 using Vidly.Models;
@@ -24,69 +26,94 @@ namespace Vidly.Controllers.Api
 
         // GET /api/customers
         [HttpGet]
-        public IEnumerable<CustomerDto> GetCustomers()
+        public async Task<ActionResult<IEnumerable<CustomerDto>>> GetTodoItems()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            return await _context.Customers
+                .Select(customer => Mapper.Map<Customer, CustomerDto>(customer))
+                .ToListAsync().ConfigureAwait(true);
         }
 
         // GET /api/customers/1
         [HttpGet("{id}")]
-        public IActionResult GetCustomer(int id)
+        public async Task<ActionResult<CustomerDto>> GetCustomer(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = await _context.Customers.FindAsync(id).ConfigureAwait(true);
 
             if (customer == null)
+            {
                 return NotFound();
-
-            return Ok(Mapper.Map<Customer, CustomerDto>(customer));
+            }
+            return Mapper.Map<Customer, CustomerDto>(customer);
         }
 
         // POST /api/customers
         [HttpPost]
-        public CustomerDto CreateCustomer(CustomerDto customerDto)
+        public async Task<ActionResult<CustomerDto>> CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 throw new ArgumentException();
 
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
+           
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+           
+            await _context.SaveChangesAsync().ConfigureAwait(true);
 
             customerDto.Id = customer.Id;
 
-            return customerDto;
+            return CreatedAtAction(nameof(GetCustomer), new { id = customer.Id }, customer);
 
         }
 
-        // PUT /api/customers/1
-        [HttpPut("{id}")]
-        public void UpdateCustomer(int id, CustomerDto customerDto)
-        {
-            if (!ModelState.IsValid)
-                throw new ArgumentException();
-
-            var customerInDb = _context.Customers.Find(id);
-
-            if (customerInDb == null)
-                throw new ArgumentException();
-
-            Mapper.Map(customerDto, customerInDb);
-
-            _context.SaveChanges();
-        }
 
         // DELETE /api/customers/1
         [HttpDelete("{id}")]
-
-        public void DeleteCustomer(int id)
+        public async Task<ActionResult<CustomerDto>> DeleteCustomer(int id)
         {
-            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = await _context.Customers.FindAsync(id).ConfigureAwait(true);
+            if (customer == null)
+            {
+                return NotFound();
+            }
 
-            if (customerInDb == null)
-                throw new ArgumentException();
+            _context.Customers.Remove(customer);
+            await _context.SaveChangesAsync().ConfigureAwait(true);
 
-            _context.Customers.Remove(customerInDb);
-            _context.SaveChanges();
+            return Mapper.Map<Customer, CustomerDto>(customer);
         }
+
+
+        // PUT /api/customers/1
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTodoItem(int id, CustomerDto customerDto)
+        {
+            if (id != customerDto.Id)
+            {
+                return BadRequest();
+            }
+
+            var customer = await _context.Customers.FindAsync(id).ConfigureAwait(true);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            Mapper.Map(customerDto, customer);
+
+            try
+            {
+                await _context.SaveChangesAsync().ConfigureAwait(true);
+            }
+            catch (DbUpdateConcurrencyException) when (!CustomerExists(id))
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+
+        private bool CustomerExists(int id) =>
+            _context.Customers.Any(e => e.Id == id);
+
     }
 }
