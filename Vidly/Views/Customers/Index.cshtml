@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model IEnumerable<Vidly.Models.Customer>
+@{
+    ViewData["Title"] = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Customers</h2>
+@if (!Model.Any())
+{
+    <p>We do not have any customers yet.</p>
+}
+else
+{
+    <table class="table table­‐bordered table­‐hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(customer.Name,"Details" ,"Customers", new
+                        { customer.Id}, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}

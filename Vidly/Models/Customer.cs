@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Vidly.Models
 {
-    public class Movie
+    public class Customer
     {
-        public int Id{ get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
     }
