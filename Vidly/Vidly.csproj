@@ -64,6 +64,16 @@
     <Compile Remove="Migrations\20200806233653_ChangePropertyIdInTabeleGenres.Designer.cs" />
     <Compile Remove="Migrations\20200806234442_AddRecordsToTableGenresAgain.cs" />
     <Compile Remove="Migrations\20200806234442_AddRecordsToTableGenresAgain.Designer.cs" />
+    <Compile Remove="Migrations\20200807010741_ApplyAnnotationsToTableMovies.cs" />
+    <Compile Remove="Migrations\20200807010741_ApplyAnnotationsToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200807011115_ApplyAnnotationsToTableMovies.cs" />
+    <Compile Remove="Migrations\20200807011115_ApplyAnnotationsToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200807011405_ApplyAnnotationsToTableMovies.cs" />
+    <Compile Remove="Migrations\20200807011405_ApplyAnnotationsToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200807011612_RemoveAnnotationsToTableMovies.cs" />
+    <Compile Remove="Migrations\20200807011612_RemoveAnnotationsToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200807011737_RemoveAnnotationsToTableMovies.cs" />
+    <Compile Remove="Migrations\20200807011737_RemoveAnnotationsToTableMovies.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
