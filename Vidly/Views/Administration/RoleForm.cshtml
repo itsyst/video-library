@@ -1,4 +1,5 @@
-﻿@model Vidly.ViewModel.RoleFormViewModel
+﻿@using Microsoft.AspNetCore.Razor.Language.Intermediate
+@model Vidly.ViewModel.RoleFormViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -10,14 +11,16 @@
 
 @using (@Html.BeginForm("Create", "Administration"))
 {
+
     @Html.ValidationSummary(true, "Please fix the following errors.")
+
     <div class="form-group w-25">
         @Html.LabelFor(r => r.Name)
         @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Name)
+       
 
     </div>
-    @*@Html.Hidden("Movie.Id",(Model.Movie != null)? Model.Id: 0) problem with magic strings*@
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }

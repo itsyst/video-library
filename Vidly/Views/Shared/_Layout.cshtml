@@ -10,8 +10,8 @@
 </head>
 <body>
     <header>
-        @*<partial name="_NavBar" />*@
-        @await Html.PartialAsync("_NavBar") @* best practice*@
+        <partial name="_NavBar" />
+        @*await Html.PartialAsync("_NavBar")*@ 
 
         @*@{
                 await Html.RenderPartialAsync("_NavBar");

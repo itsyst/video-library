@@ -84,6 +84,8 @@
     <Compile Remove="Migrations\20200807123308_SupplyAnnotationsToTableCustomersAndMovies.Designer.cs" />
     <Compile Remove="Migrations\20200811162006_SeedUsers.cs" />
     <Compile Remove="Migrations\20200811162006_SeedUsers.Designer.cs" />
+    <Compile Remove="Migrations\20200811162609_SeedUsers.cs" />
+    <Compile Remove="Migrations\20200811162609_SeedUsers.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
