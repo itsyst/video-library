@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using Vidly.Data;
 using Vidly.Models;
 using Vidly.ViewModel;
@@ -19,6 +14,7 @@ namespace Vidly.Controllers
         public CustomersController(ApplicationDbContext context)
         {
             _context = context;
+
         }
         public IActionResult Index()
         {
@@ -43,10 +39,26 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            await _context.Customers.AddAsync(customer).ConfigureAwait(true);
-            await _context.SaveChangesAsync().ConfigureAwait(true);
+            if (customer.Id == 0)
+                _context.Customers.AddAsync(customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                // This microsoft approach can open a security hols in our application
+                //  TryUpdateModelAsync(customerInDb);
+                //  TryUpdateModelAsync(customerInDb, "", new string["MembershipType"] {});
+                // We want just to change some properties and manually set the customer propperties
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+                // possible auto-mapper Install from nuget
+
+
+            }
+            _context.SaveChanges();
             return RedirectToAction("Index","Customers");
         }
 
