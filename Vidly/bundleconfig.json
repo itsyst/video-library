@@ -4,22 +4,23 @@
     "inputFiles": [
       "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/datatables/js/dataTables.bootstrap.min.js",
+    "inputFiles": [
+      "wwwroot/lib/datatables/js/dataTables.bootstrap.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/datatables/css/dataTables.bootstrap.min.css",
+    "inputFiles": [
+      "wwwroot/lib/datatables/css/dataTables.bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/datatables/js/jquery.dataTables.min.js",
+    "inputFiles": [
+      "wwwroot/lib/datatables/js/jquery.dataTables.js"
+    ]
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ]

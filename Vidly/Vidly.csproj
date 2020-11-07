@@ -92,6 +92,7 @@
     <PackageReference Include="automapper" Version="4.1.0" />
     <PackageReference Include="bootbox" Version="4.3.0" />
     <PackageReference Include="Bootbox.JS" Version="5.2.0" />
+    <PackageReference Include="jquery.datatables" Version="1.10.11" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
@@ -108,6 +109,23 @@
 
   <ItemGroup>
     <None Include="bundleconfig.json" />
+    <None Include="wwwroot\lib\datetime-moment\datetime-moment.js" />
+    <None Include="wwwroot\lib\datetime-moment\datetime-moment.min.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.bootstrap.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.foundation.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.foundation.min.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.jqueryui.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.jqueryui.min.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.semanticui.js" />
+    <None Include="wwwroot\lib\datatables\js\dataTables.semanticui.min.js" />
+    <None Include="wwwroot\lib\datatables\js\jquery.dataTables.js" />
+    <None Include="wwwroot\lib\datatables\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\lib\momentjs\moment.js" />
+    <None Include="wwwroot\lib\momentjs\moment.min.js" />
+    <None Include="wwwroot\lib\momentjs\moment.min.js.map" />
   </ItemGroup>
 
 </Project>
