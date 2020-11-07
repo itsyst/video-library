@@ -45,7 +45,9 @@ namespace Vidly.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Customer customer)
         {
-            return View();
+            await _context.Customers.AddAsync(customer).ConfigureAwait(true);
+            await _context.SaveChangesAsync().ConfigureAwait(true);
+            return RedirectToAction("Index","Customers");
         }
     }
 }
