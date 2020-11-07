@@ -28,6 +28,7 @@ namespace Vidly.Controllers.Api
         {
      
             return await _context.Movies
+                .Include(g =>g.Genre)
                 .Select(movie => Mapper.Map<Movie, MovieDto>(movie))
                 .ToListAsync().ConfigureAwait(true);
         }
