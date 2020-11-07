@@ -41,5 +41,11 @@ namespace Vidly.Controllers
             };
             return View(viewModel);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Customer customer)
+        {
+            return View();
+        }
     }
 }
