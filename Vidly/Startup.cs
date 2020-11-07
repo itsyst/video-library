@@ -1,3 +1,4 @@
+using System.Text.Json;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +8,7 @@ using Vidly.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace Vidly
@@ -16,6 +18,7 @@ namespace Vidly
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -23,16 +26,32 @@ namespace Vidly
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            
             Mapper.Initialize(c => c.AddProfile<MappingProfile>());
-            services.AddDbContext<ApplicationDbContext>(options =>
+
+
+          
+            services
+                .AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
             
             services
                 .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-           
-            services.AddControllersWithViews();
+
+       
+         
+            services.AddControllersWithViews().AddJsonOptions(options =>
+            {
+                // Use the default property (Pascal) casing.
+                //options.JsonSerializerOptions.PropertyNamingPolicy = null;
+
+                // Use the(Camel) casing.
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
+
+            });
+
             services.AddRazorPages();
         }
 
@@ -43,6 +62,7 @@ namespace Vidly
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
             }
             else
             {
