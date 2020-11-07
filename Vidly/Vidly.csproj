@@ -74,6 +74,8 @@
     <Compile Remove="Migrations\20200807011612_RemoveAnnotationsToTableMovies.Designer.cs" />
     <Compile Remove="Migrations\20200807011737_RemoveAnnotationsToTableMovies.cs" />
     <Compile Remove="Migrations\20200807011737_RemoveAnnotationsToTableMovies.Designer.cs" />
+    <Compile Remove="Migrations\20200807113209_SupplyAnnotationsToTableCustomers.cs" />
+    <Compile Remove="Migrations\20200807113209_SupplyAnnotationsToTableCustomers.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

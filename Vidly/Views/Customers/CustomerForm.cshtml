@@ -7,30 +7,34 @@
 
 <h1>New Customer</h1>
 
- @using (Html.BeginForm("Save","Customers"))
- {
+@using (Html.BeginForm("Save", "Customers"))
+{
     <div class="form-group w-25">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(model => model.Customer.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m=>m.Customer.Name)
-        </div>
-     <div class="form-group w-25">
-         @Html.LabelFor(m => m.Customer.Birthdate)
-         @Html.TextBoxFor(model => model.Customer.Birthdate, "{0:d MMM yyyy}",new { @class = "form-control" })
-     </div>
-     <div class="form-group w-25">
-         @Html.LabelFor(m=>m.Customer.MembershipTypeId)
-         @Html.DropDownListFor(m=>m.Customer.MembershipTypeId,new SelectList(Model.MembershipTypes,"Id","Name"),"Select membership type", new { @class = "form-control" })
-     </div>
-     <div >
-         <label class="custom-checkbox">
-             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) Subscribed To Newsletter?
-         </label>
-     </div>
-     @Html.HiddenFor(c =>c.Customer.Id)
-     <button type="submit" class="btn btn-primary">Save</button>
- }
+        <p class="field-validation-error text-danger">
+            @Html.ValidationMessageFor(m => m.Customer.Name)
+        </p>
+    </div>
+    <div class="form-group w-25">
+        @Html.LabelFor(m => m.Customer.Birthdate)
+        @Html.TextBoxFor(model => model.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+    </div>
+    <div class="form-group w-25">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select membership type", new { @class = "form-control" })
+        <p class="field-validation-error text-danger">
+            @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+        </p>
+    </div>
+    <div>
+        <label class="custom-checkbox">
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) Subscribed To Newsletter?
+        </label>
+    </div>
+    @Html.HiddenFor(c => c.Customer.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
 
- 
 
- 
+
