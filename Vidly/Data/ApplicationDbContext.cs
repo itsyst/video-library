@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Vidly.Models;
-using Vidly.DTOs;
+using Vidly.Dtos;
 
 
 namespace Vidly.Data
@@ -60,7 +60,7 @@ namespace Vidly.Data
                 .HasMaxLength(255);
         }
 
-        public DbSet<Vidly.DTOs.CustomerDto> CustomerDto { get; set; }
+        public DbSet<Vidly.Dtos.CustomerDto> CustomerDto { get; set; }
 
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Vidly.Models;
 
-namespace Vidly.DTOs
+namespace Vidly.Dtos
 {
     public class CustomerDto
     {
@@ -17,6 +17,8 @@ namespace Vidly.DTOs
 
         
         public bool IsSubscribedToNewsLetter { get; set; }
+
+        public MembershipTypeDto MembershipType { get; set; }
 
         public byte MembershipTypeId { get; set; }
 

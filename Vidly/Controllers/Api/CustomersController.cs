@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vidly.Data;
-using Vidly.DTOs;
+using Vidly.Dtos;
 using Vidly.Models;
 
 namespace Vidly.Controllers.Api
@@ -29,6 +26,7 @@ namespace Vidly.Controllers.Api
         public async Task<ActionResult<IEnumerable<CustomerDto>>> GetCustomers()
         {
             return await _context.Customers
+                .Include(c =>c.MembershipType)
                 .Select(customer => Mapper.Map<Customer, CustomerDto>(customer))
                 .ToListAsync().ConfigureAwait(true);
         }
