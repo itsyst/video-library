@@ -23,9 +23,6 @@
     <div class="form-group w-25">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select membership type", new { @class = "form-control" })
-        <p class="field-validation-error text-danger">
-            @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
-        </p>
     </div>
     <div>
         <label class="custom-checkbox">

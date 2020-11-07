@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Vidly.Migrations;
 using Vidly.Data;
 using Vidly.Models;
 using Vidly.ViewModel;
@@ -21,7 +19,7 @@ namespace Vidly.Controllers
         }
         public IActionResult Index()
         {
-            var movies = _context.Movies.Include(g =>g.Genre).ToList();
+            var movies = _context.Movies.Include(g => g.Genre).ToList();
             return View(movies);
         }
 
@@ -42,7 +40,7 @@ namespace Vidly.Controllers
             {
                 Movie = movie,
                 Genres = _context.Genres.ToList(),
-                
+
             };
 
             return View("MovieForm", viewModel);
@@ -51,6 +49,16 @@ namespace Vidly.Controllers
         [HttpPost]
         public IActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+
+                var modelView = new MovieFormViewModel
+                {
+                    Movie = movie,
+                    Genres = _context.Genres.ToList()
+                };
+                return View("MovieForm", modelView);
+            }
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
@@ -65,16 +73,17 @@ namespace Vidly.Controllers
                 movieInDb.ReleaseDate = movie.ReleaseDate;
             }
             _context.SaveChanges();
-
             return RedirectToAction("Index", "Movies");
         }
 
         public IActionResult New()
         {
+
             var genres = _context.Genres.ToList();
 
             var viewModel = new MovieFormViewModel
             {
+
                 Genres = genres
             };
 
