@@ -1,8 +1,14 @@
+using System.Collections.Generic;
 using System.Text.Json;
+using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Vidly.Data;
 using Microsoft.Extensions.Configuration;
@@ -15,9 +21,12 @@ namespace Vidly
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Mapper.Initialize(c => c.AddProfile<MappingProfile>());
+
 
         }
 
@@ -26,21 +35,18 @@ namespace Vidly
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            Mapper.Initialize(c => c.AddProfile<MappingProfile>());
 
 
-          
             services
                 .AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
-            
-            services
-                .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-       
-         
             services.AddControllersWithViews().AddJsonOptions(options =>
             {
                 // Use the default property (Pascal) casing.
@@ -52,17 +58,16 @@ namespace Vidly
 
             });
 
-		   // Global AuthorizationPolicy
-				var policy = new AuthorizationPolicyBuilder()
-					.RequireAuthenticatedUser()
-					.Build();
+            // Global AuthorizationPolicy
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
 
-			services.AddMvc(options =>
-			{
-				options.Filters.Add(new AuthorizeFilter(policy));
-			});
-			
-			services.AddRazorPages();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
