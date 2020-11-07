@@ -1,14 +1,10 @@
-﻿@model Vidly.Models.Movie
+﻿@model Vidly.ViewModels.RandomMovieViewModel
 
 @{
     ViewData["Title"] = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@Model.Name</h1>
+<h1>@Model.Movie.Name</h1>
 
-
-@*<h1>@(((Movie) ViewData["Movie"]).Name)</h1>
-    $1$
-        we need to cast te view data if we need to use  view data dictionary in the controller
-    #1#*@
+ 
