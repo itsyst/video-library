@@ -38,7 +38,7 @@ else
                     @customer.MembershipType.Name
                 </td>
                 <td>
-                    <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+                    <button data-customer-id="@customer.Id" class="btn btn-link js-delete">Delete</button>
                 </td>
             </tr>
         }
@@ -47,20 +47,28 @@ else
 }
 @section scripts
 {
+    <script src="lib/jquery/bootbox.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#customers .js-delete").on("click", function () {
+            $("#customers .js-delete").on("click",
+                function(e) {
 
-                var button = $(this);
-                    if (confirm("Are you sure you want to delete this customer?")) {
-                        $.ajax({
-                            url: "/api/customers/" + button.attr("data-customer-id"),
-                            method: "DELETE",
-                            success: function () {
-                                button.parents("tr").remove();
+                    var button = $(this);
+
+                    e.preventDefault();
+
+                    bootbox.confirm("Are you sure you want to delete this customer?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/customers/" + button.attr("data-customer-id"),
+                                    method: "DELETE",
+                                    success: function() {
+                                        button.parents("tr").remove();
+                                    }
+                                });
                             }
                         });
-                    }
 
                 });
         });
