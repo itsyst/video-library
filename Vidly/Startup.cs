@@ -52,7 +52,17 @@ namespace Vidly
 
             });
 
-            services.AddRazorPages();
+		   // Global AuthorizationPolicy
+				var policy = new AuthorizationPolicyBuilder()
+					.RequireAuthenticatedUser()
+					.Build();
+
+			services.AddMvc(options =>
+			{
+				options.Filters.Add(new AuthorizeFilter(policy));
+			});
+			
+			services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
