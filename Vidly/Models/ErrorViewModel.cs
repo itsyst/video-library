@@ -1,6 +1,6 @@
 using System;
 
-namespace Films.Models
+namespace Vidly.Models
 {
     public class ErrorViewModel
     {
