@@ -16,7 +16,7 @@
     foreach (var role in Model)
     {
 
-        <div class="card mb-3">
+        <div id="roles" class="card mb-3">
             <div class="card-header">
                 @Html.DisplayNameFor(r => r.Id): @role.Id
             </div>
@@ -27,8 +27,8 @@
             </div>
             <div class="card-footer">
 
-                @Html.ActionLink("Edit", "Edit", "Administration", null, new { @class = "btn btn-outline-info" })
-                @Html.ActionLink("Delete", "Delete", "Administration", null, new { @class = "btn btn-danger" })
+                <a class="btn btn-outline-info" asp-controller="Administration"  asp-action="Edit" asp-route-id="@role.Id">Edit</a>
+                <a class="btn btn-danger" asp-controller="Administration" >Delete</a>
             </div>
 
         </div>

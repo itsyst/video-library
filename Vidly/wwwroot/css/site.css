@@ -70,10 +70,12 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.input-validation-error,
-.validation-summary-errors {
+.input-validation-error {
+  border: 2px solid red;
+}
+.field-validation-error{
   color: red;
 }
-.field-validation-error {
-  border: 2px solid red;
+.validation-summary-errors ul {
+  color: red;
 }
