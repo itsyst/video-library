@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Vidly.Models
 {
+    [Table("MembershipTypes")]
     public class MembershipType
     {
         public byte Id { get; set; }
