@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vidly.Data;
@@ -19,8 +20,7 @@ namespace Vidly.Controllers
         }
         public IActionResult Index()
         {
-            //var movies = _context.Movies.Include(g => g.Genre).ToList();
-            return View();
+            return View(User.IsInRole(RoleName.CanManageMovies) ? "List" : "ReadOnlyList");
         }
 
         public async Task<IActionResult> Details(int id)
@@ -29,6 +29,8 @@ namespace Vidly.Controllers
                 .ConfigureAwait(true);
             return View(movie);
         }
+
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -84,6 +86,7 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies )]
         public IActionResult New()
         {
 

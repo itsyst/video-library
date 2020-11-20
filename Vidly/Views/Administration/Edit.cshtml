@@ -46,10 +46,14 @@
             <h5 class="card-title ml-3">None at the moment</h5>
 
         }
+
         <div class="card-footer">
-            <a class="btn btn-primary">Add Users</a>
-            <a class="btn btn-danger">Remove Users</a>
+            <a asp-controller="Administration" asp-action="Edit"
+               asp-route-roleId="@Model.Id" class="btn btn-primary">
+                Add or remove users from this role
+            </a>
         </div>
+
 
     </div>
 

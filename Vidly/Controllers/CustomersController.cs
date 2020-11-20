@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vidly.Data;
@@ -19,10 +21,9 @@ namespace Vidly.Controllers
         }
         public IActionResult Index()
         {
-            //var customers = _context.Customers.Include(m => m.MembershipType).ToList();
-            //return View(customers);
-            // No need to render the customers in the server
-            return View();
+            if (User.IsInRole(RoleName.CanManageCustomers))
+                return View("List");
+            return View("ReadOnlyList");
         }
 
         public IActionResult Details(int id)
@@ -31,6 +32,7 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public IActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
@@ -42,7 +44,7 @@ namespace Vidly.Controllers
             return View("CustomerForm", viewModel);
         }
 
-
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public IActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);

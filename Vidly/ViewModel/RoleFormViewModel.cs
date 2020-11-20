@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Vidly.ViewModel
 {
@@ -18,6 +19,10 @@ namespace Vidly.ViewModel
         [Required(ErrorMessage = "Role Name is required")]
         public string Name { get; set; }
 
-        public List<string> Users { get; set; }  
+        public List<string> Users { get; set; }
+
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public bool IsSelected { get; set; }
     }
 }
